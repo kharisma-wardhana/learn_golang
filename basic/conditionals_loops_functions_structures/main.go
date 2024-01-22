@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -138,7 +139,14 @@ func main() {
 
 	runApp(false)
 	// defer ketika panic
-	runApp(true)
+	// runApp(true)
+
+	// hasil, err := Pembagian(0, 2)
+	hasil, err := Pembagian(10, 2)
+	if err != nil {
+		fmt.Println("errors", err.Error())
+	}
+	fmt.Println("hasil", hasil)
 }
 
 /*
@@ -228,8 +236,16 @@ func runApp(error bool) {
 
 	// panic digunakan untuk menghentikan program namun defer akan tetap dieksekusi
 	if error {
-		panic("Error")
+		err := errors.New("sample error")
+		panic(err)
 	}
 
 	fmt.Println("Selesai Run App")
+}
+
+func Pembagian(valA int, valB int) (int, error) {
+	if valA == 0 {
+		return 0, errors.New("Pembagian dengan Nol")
+	}
+	return valA / valB, nil
 }

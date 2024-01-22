@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"basic/helper" // nama_module/nama_package
+	"fmt"
+)
 
 func main() {
 	/*
@@ -24,8 +27,7 @@ func main() {
 		// uint -> uint32
 	*/
 
-	var a int
-	a = 1
+	var a int = 1
 	fmt.Println("Satu", a)
 
 	b := 1
@@ -69,4 +71,8 @@ func main() {
 	var eKTP NoKTP = "34709029340"
 	fmt.Println(eKTP)
 	fmt.Println(NoKTP("909090"))
+
+	// memanggil function dari package lain
+	result := helper.SayHello(firstname)
+	fmt.Println(result)
 }

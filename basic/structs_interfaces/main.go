@@ -52,6 +52,15 @@ func (customer Customer) GetYearOfBirth(age int) string {
 	return strconv.Itoa(customer.Age)
 }
 
+// sample custom error
+type ValidationError struct {
+	Message string
+}
+
+func (validation *ValidationError) Error() string {
+	return validation.Message
+}
+
 func main() {
 	var kharis Customer
 	fmt.Println("default value struct:", kharis)
@@ -93,4 +102,12 @@ func sayHelloInterface(val HasName) {
 
 func getYear(customer Customer) {
 	fmt.Println(customer.GetYearOfBirth(customer.Age))
+}
+
+// klo return value nya interface maka return var nya berupa pointer
+func SaveData(id string, data any) error {
+	if id == "" {
+		return &ValidationError{Message: "error validation id"}
+	}
+	return nil
 }
